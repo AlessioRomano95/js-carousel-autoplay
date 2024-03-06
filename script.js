@@ -53,3 +53,31 @@ botC.addEventListener('click', function(){
     botC.classList.add('hide')
   }
 })
+
+//8 autoplay
+function nextSlide() {
+  itemsCollection[counterImg].classList.add('hide');
+  counterImg++;
+  if (counterImg === images.length) {
+      counterImg = 0;
+  }
+  itemsCollection[counterImg].classList.remove('hide');
+}
+
+//9 Funzione per avviare l'autoplay
+function startAutoplay() {
+  interval = setInterval(nextSlide, 3000);
+}
+
+//10 Avvia l'autoplay all'avvio dello script
+startAutoplay();
+
+//11 Ferma l'autoplay quando si passa sopra a una slide
+itemsWrapper.addEventListener('mouseover', function() {
+  clearInterval(interval);
+});
+
+//12 Riprende l'autoplay quando si esce dalla slide
+itemsWrapper.addEventListener('mouseout', function() {
+  startAutoplay();
+});
